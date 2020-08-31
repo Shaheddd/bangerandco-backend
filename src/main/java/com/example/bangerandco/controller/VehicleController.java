@@ -4,7 +4,6 @@ import com.example.bangerandco.model.Vehicle;
 import com.example.bangerandco.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
