@@ -1,15 +1,12 @@
 package com.example.bangerandco.security;
 
-import com.example.bangerandco.model.RoleType;
 import com.example.bangerandco.model.UserLogin;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Data
@@ -40,7 +36,14 @@ public class InputUserDetails implements UserDetails {
     @JsonIgnore
     private String password;
 
-
+    public InputUserDetails(int id, String username, String email, String password,
+                            Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.authorities = authorities;
+    }
 
     public static InputUserDetails build(UserLogin userLogin) {
         List<GrantedAuthority> authorities = userLogin.getRoles().stream()
